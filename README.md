@@ -21,17 +21,17 @@ then use it in your pom.xml
 
 *	Reliably validate input fields, not only when they are non-empty. FacesValidator will not trigger on empty onput, one of the worst "features" of JSF imo. One way out is to use a FacesConverter instead. To make this easy, the abstract class [ValidatingConverter](https://github.com/methylene/futil/blob/master/src/main/java/org/meth4j/futil/ValidatingConverter.java) can be extended.
 
-*	[Validating an input field while accessing another input field](https://github.com/methylene/futil-square-validator/blob/master/src/main/java/some/group/SideValidator.java)) This is a standard JSF feature (using binding and f:attribute tag) and ValidatingConverter makes this especially easy for the case that there is only one attribute per input. The name of the attribute must be org.meth4j.futil.attribute
+*	[Validating an input field while accessing another input field](https://github.com/methylene/futil-square-validator/blob/master/src/main/java/some/group/SideValidator.java) This is a standard JSF feature (using binding and f:attribute tag) and ValidatingConverter makes this especially easy for the case that there is only one attribute per input. The name of the attribute must be org.meth4j.futil.attribute
 
-*	Internationalised validation error messages. Simply extend ValidatingConverter and throw an appropriate org.meth4j.futil.ValidatorException. The base name of your message resource bundle must be [org.meth4j.futil.messages](https://github.com/methylene/futil-square-validator/blob/master/src/main/resources/org/meth4j/futil/messages_en.properties), unless you put an optional config file /META-INF/services/org.meth4j.futil.properties in your classpath. See [Messages.java](https://github.com/methylene/futil/blob/master/src/main/java/org/meth4j/futil/Messages.java))
+*	Internationalised validation error messages. Simply extend ValidatingConverter and throw an appropriate org.meth4j.futil.ValidatorException. The base name of your message resource bundle must be [org.meth4j.futil.messages](https://github.com/methylene/futil-square-validator/blob/master/src/main/resources/org/meth4j/futil/messages_en.properties), unless you put an optional config file /META-INF/services/org.meth4j.futil.properties in your classpath. See [Messages.java](https://github.com/methylene/futil/blob/master/src/main/java/org/meth4j/futil/Messages.java)
 
 *	Flash messages that can be [used](https://github.com/methylene/futil-square-validator/blob/master/src/main/java/some/group/SquareBean.java) anywhere, in ManagedBeans or servlets. To use this feature a [JSF PhaseListener](https://github.com/methylene/futil/blob/master/src/main/java/org/meth4j/futil/MessageFilter.java) must be registered in [faces-config.xml](https://github.com/methylene/futil-square-validator/blob/master/src/main/webapp/WEB-INF/faces-config.xml)
 
 *	Reduce FacesMessage construction boilerplate. Use static methods in class [Message](https://github.com/methylene/futil/blob/master/src/main/java/org/meth4j/futil/Message.java).
 
-*	In the xhtml: Easily find out if validation has failed for a particular input field (can be used to change the css class for that field, for instance. example [here](https://github.com/methylene/futil-square-validator/blob/master/src/main/webapp/WEB-INF/tags/some/group/inputText.xhtml))
+*	In the xhtml: Easily find out if validation has failed for a particular input field. This can be used to change the css class for that field, for instance. example [here](https://github.com/methylene/futil-square-validator/blob/master/src/main/webapp/WEB-INF/tags/some/group/inputText.xhtml)
 
-*	Enforce use of enums for resource bundle message keys
+*	Enforces use of enums for resource bundle message keys
 
 *	Load classpath resources as strings or properties objects, in one line, and without checked exceptions. See [ResourceLoader](https://github.com/methylene/futil/blob/master/src/main/java/org/meth4j/futil/ResourceLoader.java)
 
