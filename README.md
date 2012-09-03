@@ -1,7 +1,7 @@
 futil
 =====
 
-JSF tools
+Some classes I found myself repeating across several projects. Most of this stuff is related to JSF.
 
 Install maven artifact like this:
 
@@ -9,10 +9,10 @@ Install maven artifact like this:
 
 then use it in your pom.xml
 
-	&lt;dependency&gt;
-		&lt;groupId&gt;org.meth4j.futil&lt;/groupId&gt;
-		&lt;artifactId&gt;futil&lt;/artifactId&gt;
-		&lt;version&gt;0.0.3&lt;/version&gt;
-	&lt;/dependency&gt;
+	<dependency>
+		<groupId>org.meth4j.futil</groupId>
+		<artifactId>futil</artifactId>
+		<version>0.0.3</version>
+	</dependency>
 
-An example project can be found [here](https://github.com/methylene/futil-square-validator)
+[futil-square-validator](https://github.com/methylene/futil-square-validator) is an example project.
