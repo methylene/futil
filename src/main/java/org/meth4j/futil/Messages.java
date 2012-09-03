@@ -12,7 +12,8 @@ import javax.servlet.http.HttpSession;
 public class Messages {
 
 	private static final String MESSAGE = "org.meth4j.futil.message";
-	private static final String BUNDLE_NAME = "org.meth4j.futil.messages";
+	private static final String BUNDLE_NAME = ResourceLoader.loadProperties(
+			"/META-INF/services/org.meth4j.futil.properties").getProperty("bundle_name", "org.meth4j.futil.messages");
 
 	public static final void add(FacesMessage message) {
 		FacesContext.getCurrentInstance().addMessage(null, message);
