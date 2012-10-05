@@ -12,7 +12,7 @@ then use it in your pom.xml
 	<dependency>
 		<groupId>org.meth4j.futil</groupId>
 		<artifactId>futil</artifactId>
-		<version>0.0.4</version>
+		<version>0.0.6</version>
 	</dependency>
 
 [futil-square-validator](https://github.com/methylene/futil-square-validator) is an example project.
