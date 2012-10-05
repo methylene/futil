@@ -21,26 +21,26 @@ public class FlashMesg implements Serializable {
 		this.severity = severity;
 	}
 
-	public static FlashMesg info(IKey key) {
+	public static FlashMesg flashInfo(IKey key) {
 		return new FlashMesg(key, Severity.INFO);
 	}
 
-	public static FlashMesg warn(IKey key) {
+	public static FlashMesg flashWarn(IKey key) {
 		return new FlashMesg(key, Severity.WARNING);
 	}
 
-	public static FlashMesg error(IKey key) {
+	public static FlashMesg flashError(IKey key) {
 		return new FlashMesg(key, Severity.TERROR);
 	}
 
 	public FacesMessage toFacesMessage() {
 		switch (severity) {
 		case INFO:
-			return Message.info(key);
+			return Message.infoMesg(key);
 		case WARNING:
-			return Message.warn(key);
+			return Message.warnMesg(key);
 		case TERROR:
-			return Message.error(key);
+			return Message.errorMesg(key);
 		default:
 			throw new IllegalStateException();
 		}

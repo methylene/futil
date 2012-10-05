@@ -15,14 +15,14 @@ public class MessageFilter implements PhaseListener {
 		FacesContext fc = event.getFacesContext();
 		ExternalContext ec = fc.getExternalContext();
 		final HttpServletRequest r = (HttpServletRequest) ec.getRequest();
-		Messages.clearMessage(r);
+		Messages.clearMesg(r);
 	}
 
 	@Override public void beforePhase(PhaseEvent event) {
 		FacesContext fc = event.getFacesContext();
 		ExternalContext ec = fc.getExternalContext();
 		final HttpServletRequest r = (HttpServletRequest) ec.getRequest();
-		Messages.restoreMessage(r);
+		Messages.restoreMesg(r);
 	}
 
 	@Override public PhaseId getPhaseId() {
