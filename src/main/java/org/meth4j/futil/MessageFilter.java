@@ -1,5 +1,9 @@
 package org.meth4j.futil;
 
+import static javax.faces.event.PhaseId.RESTORE_VIEW;
+import static org.meth4j.futil.Messages.clearMesg;
+import static org.meth4j.futil.Messages.restoreMesg;
+
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
@@ -9,24 +13,24 @@ import javax.servlet.http.HttpServletRequest;
 
 public class MessageFilter implements PhaseListener {
 
-	private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = 14L;
+	
 	@Override public void afterPhase(PhaseEvent event) {
-		FacesContext fc = event.getFacesContext();
-		ExternalContext ec = fc.getExternalContext();
+		final FacesContext fc = event.getFacesContext();
+		final ExternalContext ec = fc.getExternalContext();
 		final HttpServletRequest r = (HttpServletRequest) ec.getRequest();
-		Messages.clearMesg(r);
+		clearMesg(r);
 	}
 
 	@Override public void beforePhase(PhaseEvent event) {
-		FacesContext fc = event.getFacesContext();
-		ExternalContext ec = fc.getExternalContext();
+		final FacesContext fc = event.getFacesContext();
+		final ExternalContext ec = fc.getExternalContext();
 		final HttpServletRequest r = (HttpServletRequest) ec.getRequest();
-		Messages.restoreMesg(r);
+		restoreMesg(r);
 	}
 
 	@Override public PhaseId getPhaseId() {
-		return PhaseId.RENDER_RESPONSE;
+		return RESTORE_VIEW;
 	}
 
 }

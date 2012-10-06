@@ -2,6 +2,8 @@ package org.meth4j.futil;
 
 import static javax.faces.context.FacesContext.getCurrentInstance;
 
+import static org.meth4j.futil.ResourceLoader.loadProperties;
+
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -15,8 +17,11 @@ public class Messages {
 
 	private static final String MESSAGE = "org.meth4j.futil.message";
 	
-	private static final String BUNDLE_NAME = ResourceLoader.loadProperties(
-			"/META-INF/services/org.meth4j.futil.properties").getProperty("bundle_name", "org.meth4j.futil.messages");
+//	@formatter:off
+	private static final String BUNDLE_NAME = loadProperties(
+			"/META-INF/services/org.meth4j.futil.properties")
+			.getProperty("bundle_name", "org.meth4j.futil.messages");
+//	@formatter:off
 
 	public static final void addMesg(FacesMessage message) {
 		getCurrentInstance().addMessage(null, message);
@@ -40,7 +45,7 @@ public class Messages {
 		flashMesg(message, r);
 	}
 
-	public static FacesMessage restoreMesg(HttpServletRequest r) {
+	static FacesMessage restoreMesg(HttpServletRequest r) {
 		final HttpSession s = r.getSession();
 		final FlashMesg message = (FlashMesg) s.getAttribute(MESSAGE);
 		if (message != null) {
@@ -52,7 +57,7 @@ public class Messages {
 		}
 	}
 
-	public static final void clearMesg(HttpServletRequest r) {
+	static final void clearMesg(HttpServletRequest r) {
 		r.getSession().removeAttribute(MESSAGE);
 	}
 
