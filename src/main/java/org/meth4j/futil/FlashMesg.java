@@ -1,12 +1,16 @@
 package org.meth4j.futil;
 
+import static org.meth4j.futil.Message.errorMesg;
+import static org.meth4j.futil.Message.infoMesg;
+import static org.meth4j.futil.Message.warnMesg;
+
 import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
 
 public class FlashMesg implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 12L;
 
 	private static enum Severity {
 		INFO, WARNING, TERROR
@@ -36,11 +40,11 @@ public class FlashMesg implements Serializable {
 	public FacesMessage toFacesMessage() {
 		switch (severity) {
 		case INFO:
-			return Message.infoMesg(key);
+			return infoMesg(key);
 		case WARNING:
-			return Message.warnMesg(key);
+			return warnMesg(key);
 		case TERROR:
-			return Message.errorMesg(key);
+			return errorMesg(key);
 		default:
 			throw new IllegalStateException();
 		}
