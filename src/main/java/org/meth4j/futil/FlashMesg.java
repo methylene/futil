@@ -1,6 +1,6 @@
 package org.meth4j.futil;
 
-import static org.meth4j.futil.Message.errorMesg;
+import static org.meth4j.futil.Message.errMesg;
 import static org.meth4j.futil.Message.infoMesg;
 import static org.meth4j.futil.Message.warnMesg;
 
@@ -33,7 +33,7 @@ public class FlashMesg implements Serializable {
 		return new FlashMesg(key, Severity.WARNING);
 	}
 
-	public static FlashMesg flashError(IKey key) {
+	public static FlashMesg flashErr(IKey key) {
 		return new FlashMesg(key, Severity.TERROR);
 	}
 
@@ -44,7 +44,7 @@ public class FlashMesg implements Serializable {
 		case WARNING:
 			return warnMesg(key);
 		case TERROR:
-			return errorMesg(key);
+			return errMesg(key);
 		default:
 			throw new IllegalStateException();
 		}

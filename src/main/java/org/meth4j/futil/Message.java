@@ -23,7 +23,7 @@ public class Message implements Serializable {
 		return new FacesMessage(SEVERITY_WARN, message.getLabel(), message.getLabel());
 	}
 
-	public static final FacesMessage errorMesg(IKey message) {
+	public static final FacesMessage errMesg(IKey message) {
 		return new FacesMessage(SEVERITY_ERROR, message.getLabel(), message.getLabel());
 	}
 
