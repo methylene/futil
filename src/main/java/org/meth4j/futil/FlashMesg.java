@@ -1,5 +1,6 @@
 package org.meth4j.futil;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static org.meth4j.futil.Message.errMesg;
 import static org.meth4j.futil.Message.infoMesg;
 import static org.meth4j.futil.Message.warnMesg;
@@ -26,14 +27,17 @@ public class FlashMesg implements Serializable {
 	}
 
 	public static FlashMesg flashInfo(IKey key) {
+		checkNotNull(key);
 		return new FlashMesg(key, Severity.INFO);
 	}
 
 	public static FlashMesg flashWarn(IKey key) {
+		checkNotNull(key);
 		return new FlashMesg(key, Severity.WARNING);
 	}
 
 	public static FlashMesg flashErr(IKey key) {
+		checkNotNull(key);
 		return new FlashMesg(key, Severity.TERROR);
 	}
 
