@@ -19,7 +19,7 @@ then use it in your pom.xml
 
 ### How can it make your life easier?
 
-*	Reliably validate input fields, not only when they are non-empty. FacesValidator will not trigger on empty onput, one of the worst "features" of JSF imo. One way out is to use a FacesConverter instead. To make this easy, the abstract class [ValidatingConverter](https://github.com/methylene/futil/blob/master/src/main/java/org/meth4j/futil/ValidatingConverter.java) can be extended.
+*	~~Reliably validate input fields, not only when they are non-empty. FacesValidator will not trigger on empty onput, one of the worst "features" of JSF imo. One way out is to use a FacesConverter instead. To make this easy, the abstract class [ValidatingConverter](https://github.com/methylene/futil/blob/master/src/main/java/org/meth4j/futil/ValidatingConverter.java) can be extended~~ UDPATE: ValidatingConverter is now a javax.faces.validator.Validator, which will validate empty fields too. For this, javax.faces.VALIDATE_EMPTY_FIELDS must be set to true. This feature was not available before JSF 2.0
 
 *	[Validating an input field using value from another input field](https://github.com/methylene/futil-square-validator/blob/master/src/main/java/some/group/SideValidator.java) This is a standard JSF feature (using binding and f:attribute tag) and ValidatingConverter makes this especially easy for the case that there is only one attribute per input. The name of the attribute must be org.meth4j.futil.attribute
 
