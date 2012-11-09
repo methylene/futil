@@ -7,7 +7,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
-import javax.servlet.http.HttpServletRequest;
 
 public abstract class ValidatingConverter implements Validator {
 
@@ -17,18 +16,18 @@ public abstract class ValidatingConverter implements Validator {
 	protected abstract void validate(FacesContext facesContext, UIComponent component, Object value,
 			UIComponent attribute) throws ValidatorException;
 
-	@Override public final void validate(FacesContext fc, UIComponent component, Object value) {
+	@Override public final void validate(final FacesContext fc, final UIComponent component, final Object value) {
 		try {
 			validate(fc, component, value, (UIComponent) component.getAttributes().get(ATTRIBUTE));
 		} catch (final ValidatorException e) {
-			final HttpServletRequest r = (HttpServletRequest) fc.getExternalContext().getRequest();
+			final Map<String, Object> requestMap = fc.getExternalContext().getRequestMap();
 			@SuppressWarnings("unchecked")
-			Map<String, Integer> errors = (Map<String, Integer>) r.getAttribute(ERRORS);
+			Map<String, Integer> errors = (Map<String, Integer>) requestMap.get(ERRORS);
 			if (errors == null) {
 				errors = new HashMap<String, Integer>();
-				r.setAttribute(ERRORS, errors);
+				requestMap.put(ERRORS, errors);
 			}
-			errors.put(component.getClientId(), 1);
+			errors.put(component.getId(), 1);
 			throw e;
 		}
 	}
