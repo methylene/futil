@@ -31,7 +31,7 @@ public final class Message {
 			return new FacesMessage(severity, msgFormat, msgFormat);
 		} else {
 			final String msg = new MessageFormat(msgFormat).format(params);
-			return new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg);
+			return new FacesMessage(severity, msg, msg);
 		}
 	}
 	

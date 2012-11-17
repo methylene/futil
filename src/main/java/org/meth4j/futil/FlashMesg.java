@@ -26,9 +26,9 @@ public class FlashMesg implements Serializable {
 		this.key = key;
 		this.severity = severity;
 		if (params == null || params.length == 0) {
-			this.params = params;
-		} else {
 			this.params = null;	
+		} else {
+			this.params = params;
 		}
 	}
 
