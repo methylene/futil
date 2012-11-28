@@ -11,7 +11,7 @@ import javax.faces.application.FacesMessage;
 
 public class FlashMesg implements Serializable {
 
-	private static final long serialVersionUID = 13L;
+	private static final long serialVersionUID = 14L;
 
 	private static enum Severity {
 		INFO, WARNING, TERROR
@@ -21,28 +21,28 @@ public class FlashMesg implements Serializable {
 	private final Object[] params;
 	private final Severity severity;
 
-	private FlashMesg(IKey key, Severity severity, Object[] params) {
+	private FlashMesg(final IKey key, final Severity severity, final Object[] params) {
 		super();
 		this.key = key;
 		this.severity = severity;
 		if (params == null || params.length == 0) {
-			this.params = null;	
+			this.params = null;
 		} else {
 			this.params = params;
 		}
 	}
 
-	public static FlashMesg flashInfo(IKey key, Object... params) {
+	public static FlashMesg flashInfo(final IKey key, final Object... params) {
 		checkNotNull(key);
 		return new FlashMesg(key, Severity.INFO, params);
 	}
 
-	public static FlashMesg flashWarn(IKey key, Object... params) {
+	public static FlashMesg flashWarn(final IKey key, final Object... params) {
 		checkNotNull(key);
 		return new FlashMesg(key, Severity.WARNING, params);
 	}
 
-	public static FlashMesg flashErr(IKey key, Object... params) {
+	public static FlashMesg flashErr(final IKey key, final Object... params) {
 		checkNotNull(key);
 		return new FlashMesg(key, Severity.TERROR, params);
 	}
@@ -50,18 +50,32 @@ public class FlashMesg implements Serializable {
 	public FacesMessage toFacesMessage() {
 		switch (severity) {
 		case INFO:
-			return infoMesg(key, params);
+			return infoMesg(key, getParams());
 		case WARNING:
-			return warnMesg(key, params);
+			return warnMesg(key, getParams());
 		case TERROR:
-			return errMesg(key, params);
+			return errMesg(key, getParams());
 		default:
 			throw new IllegalStateException();
 		}
 	}
 
 	public Object[] getParams() {
-		return params;
+		if (params == null) {
+			return null;
+		} else {
+			final Object[] copy = new Object[params.length];
+			System.arraycopy(params, 0, copy, 0, params.length);
+			return copy;
+		}
+	}
+
+	public IKey getKey() {
+		return key;
+	}
+
+	public Severity getSeverity() {
+		return severity;
 	}
 
 }
