@@ -72,6 +72,19 @@ public final class Validate {
 			return value.toString();
 		}
 	}
+	
+	/**
+	 * Returns {@code value.toString()}, or {@code null} if {@code value} is {@code null}.
+	 * @param value
+	 * @return {@code value.toString()}, if {@code value != null}, or {@code null} if {@code value == null}.
+	 */
+	public static String toStringNoEx(final Object value) {
+		if (value == null) {
+			return null;
+		} else {
+			return value.toString();
+		}
+	}
 
 	/**
 	 * Validate that value is non-null, is an instance of java.lang.String, and is not empty.
